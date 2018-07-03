@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% load staticfiles %}
+    <link href="{% static 'home/style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1> Welcome, {{ user.alias }}</h1>
+
+        <a class="logout" href="{% url 'login:logout' %}">Logout</a>
+    </header>
+
+    <h1>Friends:</h1>
+    <div class="container">
+        {% if not friends %}
+                <h3>You don't have friends yet.</h3>
+
+
+         {% else %}
+         <table class="table-striped table">
+            <thead>
+                  <tr>
+                    <th>Alias</th>
+                    <th>Actions</th>
+                  </tr>
+              </thead>
+         {% endif %}
+             {% for friend in friends %}
+              <tbody>
+                <td>{{ friend.alias }}</td>
+                <td><a href="home/{{ friend.id }}/destroy"><button type="button" class="btn btn-warning btn-xs">Remove friend</button></a></td>
+                <td><a href="home/{{ friend.id }}"><button type="button" class="btn btn-primary btn-xs">Show User</button></a></td>
+
+             {%  endfor %}
+              </tbody>
+         </table>
+    </div>
+    <h1>Other Users:</h1>
+    <div class="container">
+         <table class="table-striped table">
+              <thead>
+                  <tr>
+                    <th>Alias</th>
+                    <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+            {% for other in others %}
+                 {% if not other in friends %}
+                     <tr>
+                         <td><a href="home/{{ other.id }}">{{ other.alias }}</a></td>
+                         <td><a href="home/{{ other.id }}/create"><button type="button" class="btn btn-success btn-xs">Add friend</button></a></td>
+                     </tr>
+
+         {% endif %}
+     {%  endfor %}
+              </tbody>
+          </table>
+    </div>
+</body>
+</html>

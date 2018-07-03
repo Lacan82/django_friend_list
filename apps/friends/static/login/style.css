@@ -1,0 +1,35 @@
+label{
+    width: 90px;
+    display: inline-block;
+}
+.messages > p{
+    font-weight: bold;
+    margin: 0;
+}
+.error{
+    color: red;
+}
+.success{
+    color: green;
+}
+.registration {
+    display: inline-block;
+    border: solid black 1px;
+    margin: 25px;
+    padding: 5px;
+}
+.login{
+    padding: 5px;
+    display: inline-block;
+    vertical-align: top;
+    border: solid black 1px;
+    margin: 25px;
+}
+.Nav {
+    float: right;
+    margin: 10px 20px 20px 20px;
+    font-size: 25px;
+}
+.content {
+    margin: 75px 20px 0px 0px;
+}
